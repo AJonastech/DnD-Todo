@@ -31,6 +31,7 @@ function Todo({ listItems, setListItems, setCount, count }) {
                 listItem={listItem}
                 setListItems={setListItems}
                 listItems={listItems}
+                
               />
             );
           })}

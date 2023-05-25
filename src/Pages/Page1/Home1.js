@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import Todo from "../../Todo";
-import Doing from "../../Doing";
-import Done from "../../Done";
+import DragContainer from "../../Dragcontainer";
 
 function Home1(props) {
   const [listTodoItems, setTodoListItems] = useState([]);
@@ -12,23 +10,27 @@ function Home1(props) {
     <div className={`pt-[80px]`}>
       <h1 className="text-3xl font-bold text-black/70">Task Manager</h1>
       <div className="flex md:flex-row flex-col w-full gap-[1rem]  md:gap-[3rem] justify-center h-full p-4 items-top mt-4">
-        <Todo
-          count={count}
-          setCount={setCount}
-          listItems={listTodoItems}
-          setListItems={setTodoListItems}
+         <DragContainer
+         count={count}
+         setCount={setCount}
+         listItems={listTodoItems}
+         setListItems={setTodoListItems}
+         Title= {"Todo"}
         />
-        <Doing
+        <DragContainer
           count={count}
           setCount={setCount}
           listItems={listDoingItems}
           setListItems={setDoingListItems}
+          Title={"Doing"}
+          
         />
-        <Done
+        <DragContainer
           count={count}
           setCount={setCount}
           listItems={listDoneItems}
           setListItems={setDoneListItems}
+          Title={"Done"}
         />
       </div>
     </div>

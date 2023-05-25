@@ -7,16 +7,32 @@ import { AiOutlineClose } from "react-icons/ai";
 
 import ListItem from "./ListItem";
 
-function Done({ listItems, setListItems, setCount, count }) {
+function DragContainer({ listItems, setListItems, Title }) {
   const [formVisiblity, setFormVisibility] = useState(false);
+
   const [input, setInput] = useState("");
+
+  const handleDrop = (e) => {
+    const Data = JSON.parse(e.dataTransfer.getData("List"));
+    setListItems([...listItems, ...Data]);
+  };
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <>
-      <div className="py-6 px-4 rounded-lg bg-[#f1f2f4]    flex-col flex sm:w-[20rem] sm:grow-0 grow w-full h-full shadow-xl cursor-pointer gap-[0.5rem]  ">
+      {" "}
+      <div
+        onDragOver={(e) => handleDragOver(e)}
+        onDrop={(e) => {
+          handleDrop(e);
+        }}
+        className="py-6 px-4 rounded-lg bg-[#f1f2f4]    flex-col flex sm:w-[20rem] sm:grow-0 grow w-full h-full shadow-xl cursor-pointer gap-[0.5rem]  "
+      >
         <div className="flex justify-between">
           <h2 id="header " className="font-semibold text-xl pl-4">
-            Done
+            {Title}
           </h2>
           <button className="p-2 hover:bg-black/10 rounded-md">
             <AiOutlineEllipsis className="w-6  text-xl  " />
@@ -109,4 +125,4 @@ function Done({ listItems, setListItems, setCount, count }) {
   );
 }
 
-export default Done;
+export default DragContainer;
